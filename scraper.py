@@ -177,5 +177,7 @@ if messages_since_last_run != 0:
 with open('Dictionary.json', 'w') as fp:
     json.dump(names_fixed, fp)
 
+print("Done.".ljust(13))
+
 driver.quit()
 print()
