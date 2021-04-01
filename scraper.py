@@ -179,5 +179,9 @@ with open('Dictionary.json', 'w') as fp:
 
 print("Done.".ljust(13))
 
+print(f"Total Messages: {sum(names_fixed.values())}")
+for w in sorted(names_fixed, key=names_fixed.get, reverse=True):
+    print(f"\t{w}: {names_fixed[w]}")
+
 driver.quit()
 print()
