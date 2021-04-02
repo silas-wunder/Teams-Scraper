@@ -174,14 +174,16 @@ if messages_since_last_run != 0:
         else:
             names_fixed[real_name] = 1
 
+sorted_vals = sorted(names_fixed, key=names_fixed.get, reverse=True)
+sorted_names = {}
+
+for k in sorted_vals:
+    sorted_names[k] = names_fixed[k]
+
 with open('Dictionary.json', 'w') as fp:
-    json.dump(names_fixed, fp)
+    json.dump(sorted_names, fp)
 
 print("Done.".ljust(13))
-
-print(f"Total Messages: {sum(names_fixed.values())}")
-for w in sorted(names_fixed, key=names_fixed.get, reverse=True):
-    print(f"\t{w}: {names_fixed[w]}")
 
 driver.quit()
 print()
