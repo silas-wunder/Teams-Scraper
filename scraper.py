@@ -185,5 +185,7 @@ with open('Dictionary.json', 'w') as fp:
 
 print("Done.".ljust(13))
 
+print(f"Total Messages: {sum(sorted_names.values())}")
+
 driver.quit()
 print()
