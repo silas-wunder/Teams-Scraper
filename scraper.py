@@ -5,7 +5,7 @@ from selenium.common.exceptions import ElementNotInteractableException
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from time import sleep
-from datetime import date, datetime
+from datetime import datetime
 import json
 
 
@@ -88,7 +88,8 @@ while(True):
 # Find the correct team
 while(True):
     try:
-        driver.find_element_by_xpath('//div[@data-tid="team-CompSci CS253 Spr21"]').click()
+        driver.find_element_by_xpath(
+            '//div[@data-tid="team-CompSci CS253 Spr21"]').click()
         break
     except NoSuchElementException:
         sleep(5)
@@ -97,7 +98,8 @@ while(True):
 # Find the correct channel
 while(True):
     try:
-        driver.find_element_by_xpath('//a[@data-tid="team-CompSci CS253 Spr21-channel-Lecture and Lab Videos"]').click()
+        driver.find_element_by_xpath(
+            '//a[@data-tid="team-CompSci CS253 Spr21-channel-Lecture and Lab Videos"]').click()
         break
     except NoSuchElementException:
         sleep(5)
@@ -106,7 +108,8 @@ while(True):
 # Open the messages
 while(True):
     try:
-        driver.find_element_by_xpath('//a[@data-tid="messageBodyCollapsedString"]').click()
+        driver.find_element_by_xpath(
+            '//a[@data-tid="messageBodyCollapsedString"]').click()
         break
     except NoSuchElementException:
         sleep(5)
@@ -122,8 +125,8 @@ with open("lastTime.txt", 'r') as fp:
 clickCount = 0
 count = 0
 while(True):
-    # Once the loop runs 8 times, stop
-    if clickCount >= 8:
+    # Once the loop runs 5 times, stop (5 is usually good enough)
+    if clickCount >= 5:
         break
     if count % 10 == 0:
         try:
@@ -138,7 +141,7 @@ while(True):
         except NoSuchElementException:
             continue
     sleep(1)
-    print("Working " + ("·" * ((count%5) + 1)).ljust(13), end='\r')
+    print("Working " + ("·" * ((count % 5) + 1)).ljust(13), end='\r')
     count += 1
 
 # Grab the html version of the entire page
