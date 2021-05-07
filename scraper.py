@@ -119,7 +119,7 @@ while(True):
         continue
 
 with open("lastTime.txt", 'r') as fp:
-    latest_msg = datetime.strptime(fp.read(), '%b %d, %Y %I:%M %p')
+    latest_msg = datetime.strptime(fp.read(), '%b %d, %I:%M:%S %p')
 
 # Repeat expanding messages until all messages are visible
 clickCount = 0
@@ -144,7 +144,7 @@ while(True):
     print("Working " + ("·" * ((count % 5) + 1)).ljust(13), end='\r')
     count += 1
 
-# Grab the html version of the entire page
+# Grab the html version of the entire page in a soup object
 soup = BeautifulSoup(driver.page_source, 'html.parser')
 names = soup.find_all('div', {"data-tid": "threadBodyDisplayName"})
 times = soup.find_all('span', {"data-tid": "messageTimeStamp"})
@@ -153,7 +153,7 @@ latest_time = times[-1]['title']
 
 messages_since_last_run = 0
 for time in reversed(times):
-    time_msg = datetime.strptime(time['title'], '%b %d, %Y %I:%M %p')
+    time_msg = datetime.strptime(time['title'], '%b %d, %I:%M:%S %p')
     if time_msg <= latest_msg:
         break
     messages_since_last_run += 1
